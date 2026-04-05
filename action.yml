@@ -1,0 +1,41 @@
+name: 'Assay — AI Contribution Detection'
+description: 'Score GitHub issues, pull requests, and comments for AI agent probability. Posts a finding comment when a submission looks machine-generated.'
+author: 'The Meridian Lab'
+
+branding:
+  icon: 'shield'
+  color: 'orange'
+
+inputs:
+  api-url:
+    description: 'Assay API base URL. Override only if self-hosting.'
+    required: false
+    default: 'https://assay.themeridianlab.com'
+  threshold:
+    description: 'Score (0–100) above which Assay posts a finding comment. Default: 60.'
+    required: false
+    default: '60'
+  post-comment:
+    description: 'Post a comment on flagged submissions. Set to "false" to suppress comments (label only).'
+    required: false
+    default: 'true'
+  add-label:
+    description: 'Add a label to flagged submissions. Set to "false" to skip labelling.'
+    required: false
+    default: 'true'
+  github-token:
+    description: 'GitHub token for posting comments and labels. Defaults to the automatic GITHUB_TOKEN.'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  score:
+    description: 'The AI agent probability score (0–100) for this submission.'
+  tier:
+    description: 'Classification tier: "human", "uncertain", or "agent".'
+  signals:
+    description: 'JSON array of signal IDs that fired.'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
