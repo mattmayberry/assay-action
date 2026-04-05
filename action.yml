@@ -1,5 +1,5 @@
 name: 'Assay — AI Contribution Detection'
-description: 'Score GitHub issues, pull requests, and comments for AI agent probability. Posts a finding comment when a submission looks machine-generated.'
+description: 'Score GitHub issues, pull requests, and comments for AI agent probability.'
 author: 'The Meridian Lab'
 
 branding:
